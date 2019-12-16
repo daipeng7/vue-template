@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-19 11:26:47
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-13 09:46:59
+ * @LastEditTime: 2019-12-16 19:54:29
  * @Description: production 环境配置
  */
 
@@ -103,7 +103,7 @@ const webpackConfig = merge(baseWebpackConfig, {
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new CopyWebpackPlugin([
 			{
-				from: path.resolve(__dirname, '../public'),
+				from: path.resolve(__dirname, '../static'),
 				to: config.default.assetsSubDirectory,
 				ignore: ['.*']
 			}

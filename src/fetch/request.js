@@ -2,13 +2,12 @@
  * @Author: daipeng
  * @Date: 2018-09-03 18:57:19
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-13 12:13:40
+ * @LastEditTime: 2019-12-16 19:05:40
  * @Description: 封装request方法
  * @Company: 成都二次元动漫
  */
 import axios from 'axios';
 import router from '@/router';
-import { Message } from 'element-ui';
 import { replaceUrl, _ } from '@/utils';
 import { StatusMap, CustomCodeMap, SystemCodeMap } from './status';
 
@@ -21,7 +20,6 @@ const AJAX_DEFAULT_CONFIG = {
 		'Content-Type': 'application/json'
 	}
 };
-let message;
 
 // 错误处理方法
 const errorHandler = res => {
@@ -32,8 +30,7 @@ const errorHandler = res => {
 	else if (data && _.isString(data)) msg = data;
 	else if (data && _.isObject(data)) msg = data.message || data.msg || StatusMap[data.status].message;
 	if (msg) {
-		message && message.close && message.close();
-		message = Message.error(msg);
+		console.log(msg);
 	}
 	return Promise.reject(res);
 };

@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-19 11:22:56
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 10:48:04
+ * @LastEditTime: 2019-12-16 19:55:48
  * @Description:
  */
 
@@ -13,6 +13,7 @@ const packageConfig = require('../package.json');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
+const { px2rem } = config.default;
 /**
  * @description: 获取项目绝对地址
  * @param {string} dir
@@ -49,10 +50,19 @@ exports.cssLoaders = function (options) {
 	const postcssLoader = {
 		loader: 'postcss-loader',
 		options: {
+			ident: 'postcss',
+			plugins: [
+				require('postcss-import')(),
+				require('postcss-url')(),
+				require('autoprefixer')()
+			],
 			sourceMap: options.sourceMap
 		}
 	};
 
+	if (px2rem) {
+		postcssLoader.options.plugins.push(require('postcss-plugin-px2rem')(px2rem));
+	}
 	// generate loader string to be used with extract text plugin
 	function generateLoaders(loader, loaderOptions) {
 		const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader];
@@ -135,4 +145,13 @@ exports.createLintingRule = () => ({
 exports.hasPackagePlugin = (packageName) => {
 	const { dependencies = {}, devDependencies = {} } = packageConfig;
 	return Object.keys({ ...dependencies, ...devDependencies }).includes(packageName);
+};
+
+/**
+ * @description: 获取项目绝对地址
+ * @param {string} key
+ * @return: value 结果
+ */
+exports.getPackageValue = (key) => {
+	return key && packageConfig[key];
 };

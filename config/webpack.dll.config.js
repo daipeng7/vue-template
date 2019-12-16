@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-18 20:46:39
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 10:18:07
+ * @LastEditTime: 2019-12-16 19:00:05
  * @Description: 共用文件提取
  */
 
@@ -25,9 +25,6 @@ module.exports = {
 			'vuex',
 			'vue-lazyload'
 		],
-		elementUI: [
-			'element-ui'
-		],
 		utils: ['lodash', 'date-fns', 'axios']
 	},
 	output: {
@@ -42,7 +39,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				use: 'babel-loader'
+				use: ['cache-loader', 'babel-loader']
 			}
 		]
 	},

@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-19 11:26:47
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 14:29:22
+ * @LastEditTime: 2019-12-16 21:02:17
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -24,11 +24,15 @@ const cssMapEnabled = isProduction ? config.build.cssSourceMap : config.dev.cssS
 const needIconFont = fs.existsSync(resolve('src/assets/iconfont'));
 const needSprite = fs.existsSync(resolve('src/assets/sprite'));
 const hasElementUI = hasPackagePlugin('element-ui');
-const { assetsRoot, assetsCSSDirectory, assetsJSDirectory } = config.default;
+const { assetsRoot, assetsCSSDirectory, assetsJSDirectory, usePostCSS, px2rem } = config.default;
+
 module.exports = {
 	context: path.resolve(__dirname, '../'),
 	entry: {
-		app: './src/main.js'
+		app: [
+			(usePostCSS && px2rem) && './config/setRootSzie.js',
+			'./src/main.js'
+		].filter(Boolean)
 	},
 	output: {
 		path: assetsRoot,
@@ -48,7 +52,7 @@ module.exports = {
 			...(config.dev.useEslint ? [createLintingRule()] : []),
 			...utils.styleLoaders({
 				sourceMap: cssMapEnabled,
-				usePostCSS: true,
+				usePostCSS: usePostCSS,
 				extract: isProduction,
 				// 注入sass配置
 				prependData: '@import "~@/style/core/index.scss";'
@@ -83,7 +87,7 @@ module.exports = {
 					fallback: {
 						loader: 'file-loader',
 						options: {
-							name: utils.assetsPath('img/[name].[hash:7].[ext]')
+							name: utils.assetsPath('images/[name].[hash:7].[ext]')
 						}
 					}
 				}
@@ -92,7 +96,7 @@ module.exports = {
 				test: /\.(svg)(\?.*)?$/,
 				loader: 'file-loader',
 				options: {
-					name: utils.assetsPath('img/[name].[hash:7].[ext]')
+					name: utils.assetsPath('images/[name].[hash:7].[ext]')
 				}
 			},
 			{
@@ -128,11 +132,19 @@ module.exports = {
 		new CaseSensitivePathsPlugin(),
 		// 将.js/.css等规则应用到.vue文件中的<script>和<style>内容中
 		new VueLoaderPlugin(),
-		// https://github.com/ampedandwired/html-webpack-plugin
+		// index.html模版配置
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: utils.resolve('./public/index.html'),
 			inject: true,
+			templateParameters: {
+				title: utils.getPackageValue('title'),
+				meta: {
+					keywords: 'meta关键字',
+					description: '站点描述'
+				},
+				favicon: '/static/images/favicon.ico'
+			},
 			minify: {
 				removeComments: isProduction,
 				collapseWhitespace: isProduction,

@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-19 10:54:54
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 14:30:31
+ * @LastEditTime: 2019-12-16 16:41:39
  * @Description:
  -->
 <template>
@@ -21,6 +21,7 @@ export default {
 </script>
 <style lang="scss">
 	.app{
+		width: 20px;
 		background: color(red);
 	}
 </style>

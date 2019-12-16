@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-20 21:00:13
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-13 09:42:45
+ * @LastEditTime: 2019-12-16 16:07:48
  * @Description: 插件注册文件
  * @example:
  * 		import ElementUI from 'element-ui';
@@ -20,11 +20,11 @@
 			}
 		];
  */
-import ElementUI from 'element-ui';
+// import ElementUI from 'element-ui';
 import VueLazyLoad from 'vue-lazyload';
 
 const plugins = [
-	{ plugin: ElementUI, options: { size: 'mini', zIndex: 3000 } },
+	// { plugin: ElementUI, options: { size: 'mini', zIndex: 3000 } },
 	{
 		plugin: VueLazyLoad,
 		options: {

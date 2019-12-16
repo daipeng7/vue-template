@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-19 15:55:35
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 14:27:04
+ * @LastEditTime: 2019-12-16 17:50:28
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
@@ -29,7 +29,7 @@ const devServerConfig = {
 	inline: true,
 	progress: false, // 打包过程
 	hot: true,
-	contentBase: config.default.assetsRoot,
+	contentBase: config.default.assetsRoot, // since we use CopyWebpackPlugin.
 	compress: true,
 	host,
 	port,
@@ -37,7 +37,7 @@ const devServerConfig = {
 	overlay: config.dev.errorOverlay && { warnings: true, errors: true },
 	publicPath: '/',
 	proxy: config.dev.proxyTable,
-	quiet: true,
+	quiet: true, // necessary for FriendlyErrorsPlugin
 	watchOptions: {
 		poll: config.dev.poll
 	}

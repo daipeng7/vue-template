@@ -2,10 +2,9 @@
  * @Author: daipeng
  * @Date: 2019-10-09 19:55:24
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-13 12:14:06
+ * @LastEditTime: 2019-12-16 15:51:19
  * @Description: utils
  */
-import { MessageBox } from 'element-ui';
 import * as dateFns from 'date-fns';
 import lodash from 'lodash';
 
@@ -82,54 +81,6 @@ export const addTimestamp = (url) => {
 	const timestamp = new Date().getTime();
 	if (/\?+/.test(url)) return `${url.split('?')[0]}?time=${timestamp}`;
 	else return `${url}?time=${timestamp}`;
-};
-
-/**
- * 定制confirm方法
- *
- * @param {*} title
- * @param {*} message
- * @param {*} loading
- * @param {*} options
- * @returns
- */
-export const confirm = (title, message, loading, callback, options) => {
-	return new Promise((resolve, reject) => {
-		MessageBox.confirm(message, title, {
-			confirmButtonText: '确定',
-			cancelButtonText: '取消',
-			showCancelButton: true,
-			center: true,
-			closeOnClickModal: false,
-			beforeClose: (action, instance, done) => {
-				const closeHandle = () => {
-					instance.confirmButtonLoading = false;
-					done();
-				};
-
-				if (action === 'confirm') {
-					instance.confirmButtonLoading = true;
-					loading && (instance.confirmButtonText = loading);
-					closeHandle();
-					if (lodash.isPromise(callback)) {
-						callback.catch(() => {
-							closeHandle();
-						});
-					} else if (lodash.isFunction(callback)) {
-						const inst = callback(action, instance, done);
-						if (lodash.isPromise(inst)) inst.then(() => closeHandle()).then(resolve).catch(() => closeHandle());
-						else resolve();
-					}
-				} else {
-					done();
-					closeHandle();
-					// eslint-disable-next-line prefer-promise-reject-errors
-					reject({ action, instance, done });
-				}
-			},
-			...options
-		});
-	});
 };
 
 /**

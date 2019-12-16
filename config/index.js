@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-11-07 11:48:58
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-13 10:43:08
+ * @LastEditTime: 2019-12-16 18:57:34
  * @Description: 构建配置
  */
 
@@ -16,7 +16,23 @@ module.exports = {
 		assetsCSSDirectory: 'static/css',
 		assetsSubDirectory: 'static',
 		// dll
-		dllPath: path.resolve(__dirname, '../dll')
+		dllPath: path.resolve(__dirname, '../dll'),
+		usePostCSS: true,
+		// px2rem: false
+		// 默认为false,不将px转化为rem。
+		px2rem: {
+			designWidth: 750, // 设计稿宽度
+			rootValue: 40, // 设计稿根元素字体大小， 也可以设置{ px: 50, rpx: 100 }
+			unitPrecision: 0, // 最小转化单位
+			propWhiteList: [], // 白名单，默认为空所有的选择器的属性单位都转换
+			propBlackList: [], // 黑名单，排除哪些选择器的属性单位不被转换
+			exclude: false, // 排除文件夹
+			selectorBlackList: [], // 选择器黑名单
+			ignoreIdentifier: false, // 需要排除的标识符
+			replace: true, // 是否替换
+			mediaQuery: false, // 允许在media中转换
+			minPixelValue: 1 // 最小转换数
+		}
 	},
 	dev: {
 		// Paths
