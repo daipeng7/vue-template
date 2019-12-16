@@ -1,0 +1,19 @@
+.icon-home-down,.icon-home-good,.icon-home-triangle-right,.icon-home-update {
+	display:inline-block;
+	background-image: url("../images/home.png?t=1576477832562");
+	background-size: 116px 101px;
+	background-repeat: no-repeat;
+}
+@media(-webkit-min-device-pixel-ratio:2),(min-resolution: 192dpi){
+	.icon-home-down,.icon-home-good,.icon-home-triangle-right,.icon-home-update {
+		display:inline-block;
+		background-repeat:no-repeat;
+		background-image:url("../images/home@2x.png?t=1576477832562");
+		background-size: 116px 101px;
+	}
+}
+
+.icon-home-down{ width: 20px; height: 31px; background-position: 0px -70px; }
+.icon-home-good{ width: 64px; height: 64px; background-position: 0px 0px; }
+.icon-home-triangle-right{ width: 13px; height: 27px; background-position: -26px -70px; }
+.icon-home-update{ width: 46px; height: 35px; background-position: -70px 0px; }

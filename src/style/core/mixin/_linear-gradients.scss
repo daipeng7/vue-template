@@ -1,0 +1,79 @@
+//自定义线性渐变
+@mixin linear-gradient($angle, $details...){
+  //ie6789
+  filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='transparent', endColorStr='#F3F3F7', gradientType='0');
+  //ie10以上
+  background-image:linear-gradient($angle, $details);
+  //ie6
+  // _background-color:$black;
+  // _filter:alpha(opacity=50);
+}
+
+// @mixin bg-linear($deg: 0deg, $startColor: #000000, $endColor: $white) {
+//   filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}', gradientType='0');
+//   background-image: linear-gradient($deg, $startColor 0%, $endColor 100%);
+// }
+
+
+/**
+ * 线性渐变
+ * 1.可传入两个色值： 作为线性渐变开始和结束值
+ * 2.传入map对象 自由控制渐变效果
+ * 低版本ie浏览器仅显示两色渐变(已注释)
+ */
+ @mixin bg-linear($deg: 0, $startColor: #000000, $endColor: #ffffff, $startProgress: 0%, $endProgress: 100%) {
+
+  $start: null;
+  $end: null;
+
+  // linear-gradient属性值组装
+  $prop: "";
+  @if type-of($startColor) == 'map' {
+    // 组装渐变规律
+    @each $prog, $color in ($startColor) {
+      @if $start == null {
+        $start: $color;
+      }
+      $end: $color;
+      @if $prop != "" {
+        $prop: "#{$prop},";
+      }
+      $prop: "#{$prop} #{$color} #{$prog}";
+    }
+
+  } @else {
+    $start: $startColor;
+    $end: $endColor;
+    $prop: "#{$startColor} #{$startProgress}, #{$endColor} #{$endProgress}";
+  }
+
+  // ie渐变方向、渐变色判断(根据大致方向重定义gradientType)
+  // $dir: $deg % 360;
+  // $temp: null;
+
+  // 由于皮肤替换规则，无法使用色值计算函数,所以不兼容ie
+  // $ieStart: $start;
+  // $ieEnd: $end;
+  // $ieDir: $dir;
+  // @if ($ieDir > 315) or ($ieDir <= 45) { // 上90度为上下渐变
+  //   $ieDir: 0;
+  //   $temp: $ieStart;
+  //   $ieStart: $ieEnd;
+  //   $ieEnd: $temp;
+  // } @else if ($ieDir > 45) and ($ieDir <= 135) { // 右90度为左右逆向渐变
+  //   $ieDir: 1;
+  // } @else if ($ieDir > 135) and ($ieDir <= 225) { // 下90度为上下逆向渐变
+  //   $ieDir: 0;
+  // } @else { // 左90度为左右渐变
+  //   $ieDir: 1;
+  //   $temp: $ieStart;
+  //   $ieStart: $ieEnd;
+  //   $ieEnd: $temp;
+  // }
+  // $ieStart: ie-hex-str($ieStart);
+  // $ieEnd: ie-hex-str(#{$ieEnd});
+
+  // filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#{$ieStart}', endColorStr='#{$ieEnd}', gradientType='#{$ieDir}');
+  background-color: $start;
+  background-image: linear-gradient(#{$deg}deg, #{$prop});
+}

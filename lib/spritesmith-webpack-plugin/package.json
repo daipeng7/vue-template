@@ -1,0 +1,46 @@
+{
+  "name": "spritesmith-webpack-plugin",
+  "version": "1.0.4",
+  "description": "It is a webpack-plugin for sprite",
+  "homepage": "https://github.com/daipeng7/spritesmith-webpack-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daipeng7/spritesmith-webpack-plugin.git"
+  },
+  "author": {
+    "name": "daipeng7"
+  },
+  "keywords": [
+    "sprite",
+    "spritesmith",
+    "webpack",
+    "webpack-plugin"
+  ],
+  "engines": {
+    "node": ">= 8.16.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "ISC",
+  "main": "./dist/cjs.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel src -d dist --copy-files | bunyan"
+  },
+  "dependencies": {
+    "gulp": "3.9.*",
+    "gulp-buffer": "0.0.2",
+    "gulp-hash": "^4.2.2",
+    "gulp-load-plugins": "^2.0.1",
+    "gulp.spritesmith": "^6.11.0",
+    "ora": "^4.0.3",
+    "run-sequence": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "bunyan": "^1.8.12",
+    "cross-env": "^6.0.3"
+  }
+}

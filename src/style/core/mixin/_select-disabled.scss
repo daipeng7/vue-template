@@ -1,0 +1,7 @@
+/**
+ * 禁止选择文本
+ */
+@mixin select-disabled(){
+  touch-callout: none;
+  user-select: none;
+}

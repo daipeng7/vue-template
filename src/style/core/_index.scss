@@ -1,0 +1,36 @@
+// 基础变量
+/*-----------------------------------------------------*/
+$browser-default-font-size: 16px; // 重设默认字体大小
+$ns:'vt-' !default; // 前缀
+
+// BEM相关配置
+/*-----------------------------------------------------*/
+$element-separator: '__';
+$modifier-separator: '--';
+$state-prefix: 'is-';
+
+$radius: (
+    normal: 0,
+    S:12px,
+    M: 5px,
+    L: 8px,
+    XL: 12px,
+    XXL: 16px,
+    XXXL: 24px,
+    rounded: 1000px
+);
+$zindex: (
+    doc: 10, // 文档内部层级
+    bar: 100, // 顶部条
+    drop: 110, // 下拉列表
+    tip: 120, // 工具提示
+    alert: 130, // 弹出框
+    model: 140 // 弹出模块层级
+);
+
+// 静态资源前缀path
+$staticRoot: "/assets/";
+
+@import './color'; // 自定义颜色
+@import "./mixin"; // 自定义mixin
+@import "./function"; // 自定义方法

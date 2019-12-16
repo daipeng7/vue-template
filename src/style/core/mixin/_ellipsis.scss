@@ -1,0 +1,21 @@
+/**
+ * 省略号设置方法
+ */
+@mixin ellipsis($no-wrap: true, $lineClamp:2, $ellipsis: true) {
+  @if $no-wrap {
+    white-space: nowrap;
+  }
+  @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lineClamp;
+		word-wrap: break-word;
+		word-break: break-all;
+		// eslint-disable-next-line
+		/*! autoprefixer: off */
+		-webkit-box-orient: vertical;
+  }
+  @if $ellipsis {
+		text-overflow: ellipsis;
+  }
+  overflow: hidden;
+}
