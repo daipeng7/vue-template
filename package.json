@@ -9,8 +9,7 @@
     "build": "node ./build/build.js",
     "analyz": "NODE_ENV=production npm_config_report=true npm run build",
     "et-var": "./node_modules/.bin/et -i ./src/style/element-ui/element-variables.scss",
-    "et-theme": "./node_modules/.bin/et -c ./src/style/element-ui/element-variables.scss -o ./src/style/element-ui/theme",
-    "test": "test"
+    "et-theme": "./node_modules/.bin/et -c ./src/style/element-ui/element-variables.scss -o ./src/style/element-ui/theme"
   },
   "keywords": [
     "vue"
