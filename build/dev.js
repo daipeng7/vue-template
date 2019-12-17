@@ -1,8 +1,8 @@
 /*
- * @Author: daipeng
+ * @Author:
  * @Date: 2019-11-19 15:55:35
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 17:50:28
+ * @LastEditTime: 2019-12-17 15:53:29
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
@@ -21,15 +21,11 @@ const port = process.env.PORT && Number(process.env.PORT) || config.dev.port;
 
 const devServerConfig = {
 	clientLogLevel: 'warning',
-	historyApiFallback: {
-		rewrites: [
-			{ from: /.*/, to: path.posix.join(config.default.assetsRoot, 'index.html') }
-		]
-	},
+	historyApiFallback: true,
 	inline: true,
 	progress: false, // 打包过程
 	hot: true,
-	contentBase: config.default.assetsRoot, // since we use CopyWebpackPlugin.
+	contentBase: config.default.assetsRoot,
 	compress: true,
 	host,
 	port,

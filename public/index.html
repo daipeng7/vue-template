@@ -10,7 +10,10 @@
     <% if (meta) { %>
       <meta name="keywords" content="<%= meta.keywords %>">
       <meta name="description" itemprop="description" content="<%= meta.description %>">
-    <% } %>
+	<% } %>
+	<% if (favicon) { %>
+		<link rel="shortcut icon" href="<%= favicon %>">
+	<% } %>
   </head>
   <body>
     <div id="app"></div>

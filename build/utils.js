@@ -1,8 +1,8 @@
 /*
- * @Author: daipeng
+ * @Author:
  * @Date: 2019-11-19 16:01:40
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:55:41
+ * @LastEditTime: 2019-12-17 15:55:05
  * @Description:
  */
 
@@ -56,8 +56,8 @@ exports.createDllPlugins = (webpackConfig, dllList = []) => {
 		// 这个主要是将生成的vendor.dll.js文件加上hash值插入到页面中。
 		webpackConfig.plugins.push(
 			new AddAssetHtmlPlugin([{
-				publicPath: config.default.assetsDllDirectory,
-				outputPath: config.default.assetsDllDirectory,
+				publicPath: '/' + config.default.assetsDllDirectory,
+				outputPath: '/' + config.default.assetsDllDirectory,
 				filepath: dll.dllPath,
 				hash: true
 			}])

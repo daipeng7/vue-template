@@ -1,8 +1,8 @@
 /*
- * @Author: daipeng
+ * @Author:
  * @Date: 2019-11-07 11:48:58
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 18:57:34
+ * @LastEditTime: 2019-12-17 11:56:49
  * @Description: 构建配置
  */
 
@@ -23,7 +23,7 @@ module.exports = {
 		px2rem: {
 			designWidth: 750, // 设计稿宽度
 			rootValue: 40, // 设计稿根元素字体大小， 也可以设置{ px: 50, rpx: 100 }
-			unitPrecision: 0, // 最小转化单位
+			unitPrecision: 5, // 转化为rem的精度
 			propWhiteList: [], // 白名单，默认为空所有的选择器的属性单位都转换
 			propBlackList: [], // 黑名单，排除哪些选择器的属性单位不被转换
 			exclude: false, // 排除文件夹

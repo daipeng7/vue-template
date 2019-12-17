@@ -1,13 +1,13 @@
 /*
- * @Author: daipeng
+ * @Author:
  * @Date: 2018-09-03 18:57:19
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:05:40
+ * @LastEditTime: 2019-12-17 15:55:43
  * @Description: 封装request方法
- * @Company: 成都二次元动漫
+ * @Company:
  */
 import axios from 'axios';
-import router from '@/router';
+import { router } from '@/main';
 import { replaceUrl, _ } from '@/utils';
 import { StatusMap, CustomCodeMap, SystemCodeMap } from './status';
 
@@ -50,6 +50,7 @@ instance.interceptors.response.use(res => {
 		else if (status === undefined) return Promise.resolve(data);
 	} else return errorHandler(res);
 }, (error) => {
+	debugger;
 	if (StatusMap[error.response.status].relogin) router.replace({ name: 'login' });
 	return errorHandler(error.response);
 });

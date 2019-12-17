@@ -1,10 +1,10 @@
 /*
- * @Author: daipeng
+ * @Author:
  * @Date: 2018-09-03 18:04:15
  * @LastEditors: VSCode
- * @LastEditTime: 2019-11-26 16:37:28
+ * @LastEditTime: 2019-12-17 14:08:46
  * @Description: 输出请求方法
- * @Company: 成都二次元动漫
+ * @Company:
  */
 import apiMap from '@/fetch/apiMap';
 import { filterEmptyString } from '@/utils';
