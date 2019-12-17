@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-18 20:46:39
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:45:55
+ * @LastEditTime: 2019-12-17 17:31:37
  * @Description: 共用文件提取
  */
 
@@ -25,7 +25,7 @@ module.exports = {
 			'vuex',
 			'vue-lazyload'
 		],
-		utils: ['lodash', 'date-fns', 'axios']
+		utils: ['lodash', 'date-fns', 'axios', 'fastclick']
 	},
 	output: {
 		path: resolve('.'), // 放在项目的static/js目录下面

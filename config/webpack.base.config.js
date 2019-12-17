@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 21:02:17
+ * @LastEditTime: 2019-12-17 17:30:20
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -24,13 +24,14 @@ const cssMapEnabled = isProduction ? config.build.cssSourceMap : config.dev.cssS
 const needIconFont = fs.existsSync(resolve('src/assets/iconfont'));
 const needSprite = fs.existsSync(resolve('src/assets/sprite'));
 const hasElementUI = hasPackagePlugin('element-ui');
-const { assetsRoot, assetsCSSDirectory, assetsJSDirectory, usePostCSS, px2rem } = config.default;
+const { assetsRoot, assetsCSSDirectory, assetsJSDirectory, usePostCSS, isPc, px2rem } = config.default;
 
 module.exports = {
 	context: path.resolve(__dirname, '../'),
 	entry: {
 		app: [
-			(usePostCSS && px2rem) && './config/setRootSzie.js',
+			(!isPc && px2rem) && './config/setRootSzie.js',
+			(!isPc && px2rem) && './config/initFastClick.js',
 			'./src/main.js'
 		].filter(Boolean)
 	},

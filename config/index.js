@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-07 11:48:58
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 11:56:49
+ * @LastEditTime: 2019-12-17 17:26:49
  * @Description: 构建配置
  */
 
@@ -10,6 +10,7 @@ const path = require('path');
 
 module.exports = {
 	default: {
+		isPc: false,
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsDllDirectory: 'static/dll',
 		assetsJSDirectory: 'static/js',
