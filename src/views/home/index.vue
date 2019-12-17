@@ -2,11 +2,11 @@
  * @Author:
  * @Date: 2019-12-17 10:42:19
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:40:03
+ * @LastEditTime: 2019-12-17 18:03:07
  * @Description: home页主文件
  -->
 <template>
-	<div class="home">
+	<div class="home" v-scroll.y>
 		<!-- 展示内容，可删除 -->
 		<div v-if="$route.name === 'home'">
 			<h5>我是home页的入口页</h5>
@@ -29,6 +29,6 @@ export default {
 
 <style lang="scss">
 	.home{
-
+		position: relative;
 	}
 </style>

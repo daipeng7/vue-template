@@ -14,8 +14,8 @@ npm i
 
 ### 2、目录结构说明
 ```js
-- build
-- cofig
+- build // 构建目录
+- cofig // 构建配置目录
 - dll // 动态链接文件目录，主要是放一些不常改变的插件，可以提高打包速度，该目录是自动生成
     - vue // vue 相关不变的项目插件，vue vuex vue-router等
     - utils  // 工具型不变插件，axios lodash date-fns等
