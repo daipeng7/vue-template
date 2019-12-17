@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:54:13
+ * @LastEditTime: 2019-12-17 16:24:53
  * @Description: development 环境配置
  */
 const webpack = require('webpack');
@@ -28,7 +28,7 @@ module.exports = merge(baseWebpackConfig, {
 		new webpack.NoEmitOnErrorsPlugin(),
 		new CopyWebpackPlugin([
 			{
-				from: utils.resolve('./static'),
+				from: utils.resolve('./src/static'),
 				to: config.default.assetsSubDirectory,
 				ignore: ['.*']
 			}

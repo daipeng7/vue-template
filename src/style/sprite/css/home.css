@@ -1,6 +1,6 @@
 .icon-home-down,.icon-home-good,.icon-home-triangle-right,.icon-home-update {
 	display:inline-block;
-	background-image: url("../images/home.png?t=1576569217735");
+	background-image: url("../images/home.png?t=1576571120807");
 	background-size: 116px 101px;
 	background-repeat: no-repeat;
 }
@@ -8,7 +8,7 @@
 	.icon-home-down,.icon-home-good,.icon-home-triangle-right,.icon-home-update {
 		display:inline-block;
 		background-repeat:no-repeat;
-		background-image:url("../images/home@2x.png?t=1576569217735");
+		background-image:url("../images/home@2x.png?t=1576571120807");
 		background-size: 116px 101px;
 	}
 }

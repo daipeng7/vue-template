@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2018-09-03 18:57:19
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:55:43
+ * @LastEditTime: 2019-12-17 16:21:46
  * @Description: 封装request方法
  * @Company:
  */
@@ -50,7 +50,6 @@ instance.interceptors.response.use(res => {
 		else if (status === undefined) return Promise.resolve(data);
 	} else return errorHandler(res);
 }, (error) => {
-	debugger;
 	if (StatusMap[error.response.status].relogin) router.replace({ name: 'login' });
 	return errorHandler(error.response);
 });
