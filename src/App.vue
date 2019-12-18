@@ -2,13 +2,15 @@
  * @Author:
  * @Date: 2019-11-19 10:54:54
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:20:36
+ * @LastEditTime: 2019-12-18 09:49:43
  * @Description:
  -->
 <template>
     <div class="project">
 		<!-- 展示内容，可删除 -->
 		<div v-if="$route.name === 'app'">
+			<i class="iconfont-dd"></i>
+			<i class="icon-home-down"></i>
 			<h5>我是应用的根页面，我可以一般功能：</h5>
 			<ol class="list">
 				<li>1、展示入场动画</li>
@@ -43,6 +45,7 @@ export default {
 </script>
 <style lang="scss">
 	.project{
+		color: color(red);
 		.list{
 			li{
 				font-size: 30px;

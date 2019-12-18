@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 17:30:20
+ * @LastEditTime: 2019-12-18 10:14:41
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -30,16 +30,17 @@ module.exports = {
 	context: path.resolve(__dirname, '../'),
 	entry: {
 		app: [
+			// 如果为移动端添加
 			(!isPc && px2rem) && './config/setRootSzie.js',
 			(!isPc && px2rem) && './config/initFastClick.js',
 			'./src/main.js'
 		].filter(Boolean)
 	},
 	output: {
-		path: assetsRoot,
-		publicPath: '/',
-		filename: `${assetsJSDirectory}${path.sep}[name].js`,
-		chunkFilename: `${assetsJSDirectory}${path.sep}[name].[chunkhash].js`
+		path: assetsRoot, // 输出结果根目录，一般为dist
+		publicPath: '/', // js输出相对于dist的路径，在html中script标签引入的时候会向前追加该相对路径
+		filename: `${assetsJSDirectory}${path.sep}[name].js`, // 输出的js相对预dist的路径
+		chunkFilename: `${assetsJSDirectory}${path.sep}[name].[chunkhash].js` // 输出的js相对预dist的路径
 	},
 	resolve: {
 		extensions: ['.mjs', '.js', '.jsx', '.vue', '.json', '.wasm'],
@@ -56,7 +57,7 @@ module.exports = {
 				usePostCSS: usePostCSS,
 				extract: isProduction,
 				// 注入sass配置
-				prependData: '@import "~@/style/core/index.scss";'
+				prependData: ['@import "~@/style/core/index.scss";'].join('\n')
 			}),
 			{
 				test: /\.vue$/,

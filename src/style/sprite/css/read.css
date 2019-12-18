@@ -1,6 +1,6 @@
 .icon-read-guess,.icon-read-list,.icon-read-modal-close,.icon-read-prev-polo,.icon-read-renqi,.icon-read-share,.icon-read-star,.icon-read-up,.icon-read-wupaoyuhuix,.icon-read-wupaoyuyueduyezuox {
 	display:inline-block;
-	background-image: url("../images/read.png?t=1576632289932");
+	background-image: url("../images/read.png?t=1576649637974");
 	background-size: 263px 173px;
 	background-repeat: no-repeat;
 }
@@ -8,7 +8,7 @@
 	.icon-read-guess,.icon-read-list,.icon-read-modal-close,.icon-read-prev-polo,.icon-read-renqi,.icon-read-share,.icon-read-star,.icon-read-up,.icon-read-wupaoyuhuix,.icon-read-wupaoyuyueduyezuox {
 		display:inline-block;
 		background-repeat:no-repeat;
-		background-image:url("../images/read@2x.png?t=1576632289932");
+		background-image:url("../images/read@2x.png?t=1576649637974");
 		background-size: 263px 173px;
 	}
 }

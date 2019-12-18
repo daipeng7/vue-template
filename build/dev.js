@@ -1,14 +1,15 @@
 /*
  * @Author:
  * @Date: 2019-11-19 15:55:35
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-18 09:24:37
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-18 13:47:58
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
 const portfinder = require('portfinder');
 const webpack = require('webpack');
 const chalk = require('chalk');
+const chokidar = require('chokidar');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const WebpackDevServer = require('webpack-dev-server');
 
@@ -39,38 +40,62 @@ const devServerConfig = {
 	}
 };
 
-const developmentStart = function(dllList) {
-	portfinder.basePort = devServerConfig.port;
-	portfinder.getPortPromise().then(function(port, err) {
-		if (err) console.log(chalk.red(err));
-		else {
-			const devWebpackConfig = require('../config/webpack.dev.config');
-			// 使用一个新的端口
-			process.env.PORT = port;
-			devServerConfig.port = port;
+const createSrcPromise = function(dllList) {
+	return new Promise((resolve, reject) => {
+		portfinder.basePort = devServerConfig.port;
+		portfinder.getPortPromise().then(function(port, err) {
+			if (err) console.log(chalk.red(err));
+			else {
+				const devWebpackConfig = require('../config/webpack.dev.config');
+				// 使用一个新的端口
+				process.env.PORT = port;
+				devServerConfig.port = port;
 
-			// 添加dll插件
-			if (dllList && dllList.length) utils.createDllPlugins(devWebpackConfig, dllList);
+				// 添加dll插件
+				if (dllList && dllList.length) utils.createDllPlugins(devWebpackConfig, dllList);
 
-			devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
-				compilationSuccessInfo: {
-					messages: [chalk.green(`Your application is running here: http://${devServerConfig.host}:${port}`)]
-				},
-				clearConsole: false
-			}));
+				devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
+					compilationSuccessInfo: {
+						messages: [chalk.green(`Your application is running here: http://${devServerConfig.host}:${port}`)]
+					},
+					clearConsole: false
+				}));
 
-			// 生成webpack编译对象
-			const compiler = webpack(devWebpackConfig);
-			console.log(chalk.green('\nStarting development server...'));
-			const server = new WebpackDevServer(compiler, devServerConfig);
+				// 生成webpack编译对象
+				const compiler = webpack(devWebpackConfig);
+				console.log(chalk.green('\nStarting development server...'));
+				const server = new WebpackDevServer(compiler, devServerConfig);
 
-			server.listen(devServerConfig.port, devServerConfig.host, function(err) {
-				if (err) console.log(chalk.red(err));
-			});
-		}
+				server.listen(devServerConfig.port, devServerConfig.host, function(err) {
+					if (err) console.log(chalk.red(err));
+					else resolve();
+				});
+			}
+		});
 	});
 };
 
-createDllPromise().then(function({ dllList }) {
-	developmentStart(dllList);
-});
+let watcher = null;
+
+const createWatch = () => {
+	if (watcher) return;
+	const resolve = (dir) => path.resolve(__dirname, dir);
+	const configResolve = (dir) => path.resolve(__dirname, '../config', dir);
+	watcher = chokidar.watch([configResolve('./'), resolve('./')], {
+		ignored(p) {
+			const ignoredPaths = [resolve('./build.js'), configResolve('./webpack.prod.config.js')];
+			return ignoredPaths.includes(p);
+		}
+	});
+	watcher.on('change', () => {
+		developmentStart();
+	});
+};
+
+const developmentStart = () => {
+	createDllPromise().then(function({ dllList }) {
+		createSrcPromise(dllList).then(createWatch);
+	});
+};
+
+developmentStart();
