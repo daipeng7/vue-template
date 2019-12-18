@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 15:55:35
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:53:29
+ * @LastEditTime: 2019-12-18 09:24:37
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
@@ -25,7 +25,7 @@ const devServerConfig = {
 	inline: true,
 	progress: false, // 打包过程
 	hot: true,
-	contentBase: config.default.assetsRoot,
+	contentBase: false,
 	compress: true,
 	host,
 	port,

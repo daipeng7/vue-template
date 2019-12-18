@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 16:01:40
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:55:05
+ * @LastEditTime: 2019-12-18 09:23:45
  * @Description:
  */
 
@@ -57,7 +57,7 @@ exports.createDllPlugins = (webpackConfig, dllList = []) => {
 		webpackConfig.plugins.push(
 			new AddAssetHtmlPlugin([{
 				publicPath: '/' + config.default.assetsDllDirectory,
-				outputPath: '/' + config.default.assetsDllDirectory,
+				outputPath: config.default.assetsDllDirectory,
 				filepath: dll.dllPath,
 				hash: true
 			}])
