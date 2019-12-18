@@ -14,8 +14,13 @@
   "keywords": [
     "vue"
   ],
-  "author": "daipeng",
+  "author": "daipeng7",
   "license": "ISC",
+  "homepage": "https://github.com/daipeng7/vue-template",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daipeng7/vue-template.git"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "date-fns": "^2.8.1",
