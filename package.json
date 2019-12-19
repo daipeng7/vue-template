@@ -3,14 +3,6 @@
   "version": "1.0.0",
   "description": "vue,vue-template",
   "main": "index.js",
-  "scripts": {
-    "start": "npm run dev",
-    "dev": "node ./build/dev.js",
-    "build": "node ./build/build.js",
-    "analyz": "NODE_ENV=production npm_config_report=true npm run build",
-    "et-var": "./node_modules/.bin/et -i ./src/style/element-ui/element-variables.scss",
-    "et-theme": "./node_modules/.bin/et -c ./src/style/element-ui/element-variables.scss -o ./src/style/element-ui/theme"
-  },
   "keywords": [
     "vue"
   ],
@@ -20,6 +12,15 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daipeng7/vue-template.git"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node ./build/dev.js",
+    "build": "node ./build/build.js",
+    "test": "jest",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build",
+    "et-var": "./node_modules/.bin/et -i ./src/style/element-ui/element-variables.scss",
+    "et-theme": "./node_modules/.bin/et -c ./src/style/element-ui/element-variables.scss -o ./src/style/element-ui/theme"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -42,6 +43,7 @@
     "add-asset-html-webpack-plugin": "^3.1.3",
     "autoprefixer": "^9.7.2",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-component": "^1.1.1",
     "cache-loader": "^4.1.0",
@@ -56,6 +58,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.1.1",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
@@ -64,6 +67,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.1.0",
+    "jest": "^24.9.0",
     "lint-staged": "^9.4.3",
     "mini-css-extract-plugin": "^0.8.0",
     "node-notifier": "^6.0.0",
@@ -81,6 +85,7 @@
     "spritesmith-webpack-plugin": "^1.0.6",
     "terser-webpack-plugin": "^2.2.1",
     "url-loader": "^2.2.0",
+    "vue-jest": "^3.0.5",
     "vue-loader": "^15.7.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
@@ -90,6 +95,30 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-iconfont-plugin-nodejs": "^1.0.16",
     "webpack-merge": "^4.2.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/__tests__/**/*.{js,ts,vue}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,ts,vue}"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,ts,vue}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,ts,vue}"
+    ],
+    "testEnvironment": "jsdom",
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.(js|ts)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "vue\\$": "<rootDir>/node_modules/vue/dist/vue.esm.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ]
   },
   "husky": {
     "hooks": {

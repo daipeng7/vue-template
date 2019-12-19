@@ -1,8 +1,8 @@
 /*
  * @Author:
  * @Date: 2019-11-19 12:00:22
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-03 15:52:44
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-19 14:24:57
  * @Description:
  */
 // https://eslint.org/docs/user-guide/configuring
@@ -19,6 +19,7 @@ module.exports = {
 		// https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
 		// consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
 		'plugin:vue/essential',
+		'plugin:jest/recommended',
 		// https://github.com/standard/standard/blob/master/docs/RULES-en.md
 		'standard'
 	],
