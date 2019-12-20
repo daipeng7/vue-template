@@ -94,7 +94,7 @@ const createWatch = () => {
 
 const developmentStart = () => {
 	createDllPromise().then(function({ dllList }) {
-		createSrcPromise(dllList).then(createWatch);
+		createSrcPromise(dllList);
 	});
 };
 

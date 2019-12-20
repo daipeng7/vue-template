@@ -1,8 +1,8 @@
 /*
  * @Author:
  * @Date: 2018-09-03 11:29:10
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 14:42:32
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-19 17:15:06
  * @Description: 应用入口文件
  */
 import Vue from 'vue';
@@ -30,8 +30,7 @@ export const router = initRouter(Vue);
 export const store = initStore(Vue);
 
 new Vue({
-	el: '#app',
 	router,
 	store,
 	template: '<router-view></router-view>'
-});
+}).$mount('#app');

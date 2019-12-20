@@ -14,6 +14,7 @@ module.exports = {
 	},
 	env: {
 		browser: true,
+		"jest/globals": true
 	},
 	extends: [
 		// https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
@@ -29,6 +30,7 @@ module.exports = {
 	],
 	// add your custom rules here
 	rules: {
+		'jest/no-jest-import': 'off',
 		'no-tabs': 'off',
 		'no-new': 'off',
 		'no-unused-vars': 'off',

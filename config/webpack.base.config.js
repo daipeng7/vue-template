@@ -1,8 +1,8 @@
 /*
  * @Author:
  * @Date: 2019-11-19 11:26:47
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-18 10:14:41
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-19 17:06:59
  * @Description: webpack 共用基础配置
  */
 const path = require('path');

@@ -1,12 +1,12 @@
 /*
  * @Author:
  * @Date: 2019-11-26 17:04:48
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-17 15:43:45
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-19 20:11:40
  * @Description: 路由主文件
  */
 import VueRouter from 'vue-router';
-import App from '@/App';
+import App from '@/views/App';
 import Login from '@/views/login';
 import Home from '@/views/home';
 import { initGuards } from './guards';

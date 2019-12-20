@@ -1,8 +1,8 @@
 <!--
  * @Author:
  * @Date: 2019-11-19 10:54:54
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-18 09:49:43
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-19 19:41:19
  * @Description:
  -->
 <template>
@@ -23,6 +23,7 @@
 </template>
 <script>
 export default {
+	name: 'App',
 	data () {
 		return {};
 	},
@@ -36,9 +37,9 @@ export default {
 		},
 		validateAppStatus() {
 			// TODO 检查当前的登录状态，可根据业务选择是否或者怎样使用
-			this.$store.dispatch('app/getUserInfo').then(res => {
-				// this.$router.replace({ name: 'login' });
-			});
+			// this.$store.dispatch('app/getUserInfo').then(res => {
+			// 	// this.$router.replace({ name: 'login' });
+			// });
 		}
 	}
 };
