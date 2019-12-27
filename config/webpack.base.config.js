@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-19 17:06:59
+ * @LastEditTime : 2019-12-26 11:30:35
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -188,6 +188,7 @@ module.exports = {
 				const cssPath = resolve('src/style/sprite/css');
 				if (!fs.existsSync(cssPath)) return;
 				const files = fs.readdirSync(cssPath) || [];
+
 				files.forEach(file => {
 					if (path.basename(indexPath) !== file) indexContent.push(`@import "./${path.basename(file)}";`);
 				});

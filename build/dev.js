@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 15:55:35
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-18 13:47:58
+ * @LastEditTime : 2019-12-26 11:33:31
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
@@ -62,8 +62,8 @@ const createSrcPromise = function(dllList) {
 				}));
 
 				// 生成webpack编译对象
-				const compiler = webpack(devWebpackConfig);
 				console.log(chalk.green('\nStarting development server...'));
+				const compiler = webpack(devWebpackConfig);
 				const server = new WebpackDevServer(compiler, devServerConfig);
 
 				server.listen(devServerConfig.port, devServerConfig.host, function(err) {
