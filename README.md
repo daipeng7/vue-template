@@ -1,3 +1,10 @@
+<!--
+ * @Author: daipeng
+ * @Date: 2019-12-17 16:02:45
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2019-12-27 13:58:27
+ * @Description: 
+ -->
 ## vue 项目模版
 ### 1、安装、运行
 ```js
@@ -67,3 +74,14 @@ npm i
 ```
 
 ### 3、构建配置介绍
+```js
+- build
+    - build // 生产构建脚本
+    - dev // 开发构建脚本
+    - dll // dll构建脚本
+- config
+    - webpack.base.config.js // 构建的基础配置
+    - webpack.dev.config.js // 开发环境构建配置
+    - webpack.dll.config.js // dll构建配置
+    - webpack.prod.config.js // 生产环境构建配置
+```
