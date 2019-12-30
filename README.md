@@ -2,7 +2,7 @@
  * @Author: daipeng
  * @Date: 2019-12-17 16:02:45
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-27 13:58:27
+ * @LastEditTime : 2019-12-30 15:44:49
  * @Description: 
  -->
 ## vue 项目模版
@@ -80,8 +80,101 @@ npm i
     - dev // 开发构建脚本
     - dll // dll构建脚本
 - config
+    - index.js // 基础配置
     - webpack.base.config.js // 构建的基础配置
     - webpack.dev.config.js // 开发环境构建配置
     - webpack.dll.config.js // dll构建配置
     - webpack.prod.config.js // 生产环境构建配置
+```
+```js
+// config/index.js
+const path = require('path');
+
+module.exports = {
+	default: {
+        isPc: false, // 是否是pc网站
+		assetsRoot: path.resolve(__dirname, '../dist'),// 打包输出根路径
+		assetsDllDirectory: 'static/dll', // dll 目录
+		assetsJSDirectory: 'static/js', // js 目录
+		assetsCSSDirectory: 'static/css', // css 目录
+		assetsSubDirectory: 'static', // 静态资源目录
+		// dll文件输出目录
+        dllPath: path.resolve(__dirname, '../dll'),
+        // 是否使用postcss
+        usePostCSS: true,
+        // px转换为rem的配置
+		// px2rem: false
+		// 默认为false,不将px转化为rem。
+		px2rem: {
+			designWidth: 750, // 设计稿宽度
+			rootValue: 40, // 设计稿根元素字体大小， 也可以设置{ px: 50, rpx: 100 }
+			unitPrecision: 5, // 转化为rem的精度
+			propWhiteList: [], // 白名单，默认为空所有的选择器的属性单位都转换
+			propBlackList: [], // 黑名单，排除哪些选择器的属性单位不被转换
+			exclude: false, // 排除文件夹
+			selectorBlackList: [], // 选择器黑名单
+			ignoreIdentifier: false, // 需要排除的标识符
+			replace: true, // 是否替换
+			mediaQuery: false, // 允许在media中转换
+			minPixelValue: 1 // 最小转换数
+		}
+	},
+	dev: {
+		// Paths
+		proxyTable: {
+			'/api': {
+				// target: 'http://47.98.152.225:5010',
+				target: 'http://172.16.25.136:5010',
+				changeOrigin: true,
+				pathRewrite: {
+					'^/api': ''
+				}
+			}
+		},
+		host: '0.0.0.0',
+		port: 8099, // 会覆盖process.env.PORT
+		autoOpenBrowser: true,
+		errorOverlay: true,
+		notifyOnErrors: true,
+		showSpeed: true,
+		poll: false, // webpack watch模式
+
+		// 使用eslint
+		useEslint: true,
+		// 如果为true，则eslint错误和警告也将显示在浏览器中。
+		showEslintErrorsInOverlay: false,
+
+		/**
+		 * Source Maps
+		 */
+		devtool: 'cheap-module-eval-source-map',
+
+		// If you have problems debugging vue-files in devtools,
+		// set this to false - it *may* help
+		// https://vue-loader.vuejs.org/en/options.html#cachebusting
+		cacheBusting: true,
+
+		cssSourceMap: true
+	},
+
+	build: {
+		// Template for index.html
+		index: path.resolve(__dirname, '../dist/index.html'),
+
+		/**
+		 * Source Maps
+		 */
+		cssSourceMap: true,
+		productionSourceMap: false,
+		// https://webpack.js.org/configuration/devtool/#production
+		devtool: '#source-map',
+		productionGzipExtensions: ['js', 'css'],
+
+		// Run the build command with an extra argument to
+		// View the bundle analyzer report after build finishes:
+		// `npm run build --report`
+		// Set to `true` or `false` to always turn it on or off
+		bundleAnalyzerReport: process.env.npm_config_report
+	}
+};
 ```
