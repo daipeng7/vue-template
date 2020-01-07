@@ -1,13 +1,13 @@
 /*
  * @Author:
  * @Date: 2019-12-16 17:11:37
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:36:34
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2020-01-07 14:06:02
  * @Description: 设置根元素字体大小，配合px2rem插件，在入口文件倒入
  */
 const config = require('./index');
 const { px2rem } = config.default;
-(function(win) {
+(function(window) {
 	if (!px2rem) return;
 	let dpr = window.devicePixelRatio || 1;
 	// iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
@@ -28,7 +28,7 @@ const { px2rem } = config.default;
 		var width = docEle.clientWidth;
 		docEle.style.fontSize = (width * px2rem.rootValue) / px2rem.designWidth + 'px';
 	};
-	win.addEventListener(evt, fn, false);
+	window.addEventListener(evt, fn, false);
 	// DOM加载完成触发该事件
 	document.addEventListener('DOMContentLoaded', fn, false);
 }(window));

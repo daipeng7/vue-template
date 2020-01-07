@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-26 11:30:35
+ * @LastEditTime : 2019-12-31 16:49:23
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -24,7 +24,7 @@ const cssMapEnabled = isProduction ? config.build.cssSourceMap : config.dev.cssS
 const needIconFont = fs.existsSync(resolve('src/assets/iconfont'));
 const needSprite = fs.existsSync(resolve('src/assets/sprite'));
 const hasElementUI = hasPackagePlugin('element-ui');
-const { assetsRoot, assetsCSSDirectory, assetsJSDirectory, usePostCSS, isPc, px2rem } = config.default;
+const { assetsRoot, assetsCSSDirectory, assetsJSDirectory, usePostCSS, isPc, px2rem, projectTitle } = config.default;
 
 module.exports = {
 	context: path.resolve(__dirname, '../'),
@@ -140,7 +140,7 @@ module.exports = {
 			template: utils.resolve('./public/index.html'),
 			inject: true,
 			templateParameters: {
-				title: utils.getPackageValue('title'),
+				title: projectTitle,
 				meta: {
 					keywords: 'meta关键字',
 					description: '站点描述'
