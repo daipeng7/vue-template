@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-18 20:46:39
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-19 17:08:45
+ * @LastEditTime : 2020-01-08 14:32:15
  * @Description: 共用文件提取
  */
 
@@ -11,6 +11,7 @@ const webpack = require('webpack');
 const config = require('./index');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const HappyPack = require('happypack');
 
 const resolve = function (dir) {
 	return path.resolve(config.default.dllPath, dir);
@@ -39,7 +40,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				use: ['cache-loader', 'babel-loader']
+				use: 'happypack/loader?id=babel'
 			}
 		]
 	},
@@ -92,6 +93,10 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new webpack.ProgressPlugin(),
+		new HappyPack({
+			id: 'babel',
+			loaders: ['cache-loader', 'babel-loader']
+		}),
 		new webpack.DllPlugin({
 			path: resolve('[name]/[name].manifest.json'), // 生成上文说到清单文件，放在当前build文件下面，这个看你自己想放哪里了。
 			name: '[name]_library'

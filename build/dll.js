@@ -1,8 +1,8 @@
 /*
  * @Author:
  * @Date: 2019-11-20 15:52:20
- * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:13:07
+ * @LastEditors  : VSCode
+ * @LastEditTime : 2020-01-08 14:38:04
  * @Description:
  */
 const chalk = require('chalk');
@@ -16,7 +16,8 @@ const createDllPromise = function() {
 	return new Promise(function(resolve, reject) {
 		try {
 			const compiler = webpack(webpackDllConfig);
-			const spinner = ora('Start compile dll asset service...\n');
+			const spinner = ora();
+			spinner.start('Start compile dll asset service...\n');
 			// 生成动态链接文件结束并写入文件中触发事件
 			compiler.hooks.done.tapAsync('dllFinish', function(state, errCallback) {
 				const err = errCallback();

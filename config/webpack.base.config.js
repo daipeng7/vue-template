@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-19 11:26:47
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-31 16:49:23
+ * @LastEditTime : 2020-01-08 14:30:39
  * @Description: webpack 共用基础配置
  */
 const path = require('path');
@@ -16,6 +16,7 @@ const ElementThemeWebpackPlugin = require('element-theme-webpack-plugin');
 const SpritesmithWebpackPlugin = require('spritesmith-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HappyPack = require('happypack');
 
 const { resolve, createLintingRule, hasPackagePlugin } = utils;
 const isProduction = process.env.NODE_ENV === 'production';
@@ -77,7 +78,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				use: ['cache-loader', 'babel-loader'],
+				use: 'happypack/loader?id=babel',
 				include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
 				exclude: file => (/node_modules/.test(file) && !/\.vue\.js/.test(file))
 			},
@@ -134,6 +135,10 @@ module.exports = {
 		new CaseSensitivePathsPlugin(),
 		// 将.js/.css等规则应用到.vue文件中的<script>和<style>内容中
 		new VueLoaderPlugin(),
+		new HappyPack({
+			id: 'babel',
+			loaders: ['cache-loader', 'babel-loader']
+		}),
 		// index.html模版配置
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
