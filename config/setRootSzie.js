@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-12-16 17:11:37
  * @LastEditors  : VSCode
- * @LastEditTime : 2020-01-14 14:30:04
+ * @LastEditTime : 2020-01-14 14:36:48
  * @Description: 设置根元素字体大小，配合px2rem插件，在入口文件倒入
  */
 const config = require('./index');
@@ -21,6 +21,7 @@ const { px2rem } = config.default;
 	const docEle = document.documentElement;
 	const scale = 1 / dpr ;
 	const metaDOM = document.createElement('meta');
+	if (document.querySelector && document.querySelector('head meta[name=viewport]')) document.querySelector('head meta[name=viewport]').remove();
 	metaDOM.setAttribute('name', 'viewport');
 	metaDOM.setAttribute('content', 'initial-scale=' + scale + ',maximum-scale=' + scale + ',minimum-scale=' + scale + ',user-scalable=no>');
 	document.head.appendChild(metaDOM);
