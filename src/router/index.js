@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-26 17:04:48
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-19 20:11:40
+ * @LastEditTime : 2020-01-14 14:27:35
  * @Description: 路由主文件
  */
 import VueRouter from 'vue-router';
@@ -25,7 +25,10 @@ export const errorPageRoutes = [
 	{
 		name: 'error_404',
 		path: '/*',
-		component: resolve => require(['@/views/error/404'], resolve)
+		component: resolve => require(['@/views/error/404'], resolve),
+		beforeEnter(to, from, next) {
+			if (/(index\.(html|htm))$/.test(to.path)) next({ name: 'app' });
+		}
 	}
 ];
 

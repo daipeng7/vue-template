@@ -2,11 +2,12 @@
  * @Author:
  * @Date: 2019-11-19 10:54:54
  * @LastEditors  : VSCode
- * @LastEditTime : 2020-01-03 17:51:26
+ * @LastEditTime : 2020-01-09 16:32:42
  * @Description:
  -->
 <template>
     <div class="project">
+		<img src="@/assets/images/common/logo.png" alt="" />
 		<!-- 展示内容，可删除 -->
 		<div v-if="$route.name === 'app'">
 			<i class="iconfont-dd"></i>
