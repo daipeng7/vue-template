@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2018-09-03 11:29:10
  * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-19 17:15:06
+ * @LastEditTime : 2020-01-17 11:54:55
  * @Description: 应用入口文件
  */
 import Vue from 'vue';

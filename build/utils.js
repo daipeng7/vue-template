@@ -1,7 +1,7 @@
 /*
  * @Author:
  * @Date: 2019-11-19 16:01:40
- * @LastEditors  : VSCode
+ * @LastEditors: VSCode
  * @LastEditTime : 2019-12-18 13:44:04
  * @Description:
  */
@@ -9,6 +9,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const notifier = require('node-notifier');
+const _ = require('lodash');
 const packageConfig = require('../package.json');
 const config = require('../config');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
@@ -63,4 +64,26 @@ exports.createDllPlugins = (webpackConfig, dllList = []) => {
 			}])
 		);
 	});
+};
+
+/**
+ * @description: 通过入口文件对象获取该对象下的成员标识
+ * @param {Object} 入口文件对象
+ * @return: Promise
+ */
+exports.getEntryModuleIdentity = (entry = {}) => {
+	const cwd = process.cwd();
+	return _.keys(entry).reduce((map, name, index) => {
+		map[name] = entry[name].reduce((res, moduleName) => {
+			try {
+				const modulePath = path.isAbsolute(moduleName) ? moduleName.match(new RegExp(`${path.resolve(cwd, 'node_modules')}/(\\w+)`))[0] : path.resolve(cwd, 'node_modules', moduleName);
+				const tag = require(path.resolve(modulePath, 'package.json')).version;
+				res[moduleName] = tag;
+				return res;
+			} catch (error) {
+				throw TypeError(`请安装插件${moduleName}`);
+			}
+		}, {});
+		return map;
+	}, {});
 };

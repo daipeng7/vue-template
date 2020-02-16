@@ -1,7 +1,7 @@
 /*
  * @Author:
  * @Date: 2019-11-18 20:46:39
- * @LastEditors  : VSCode
+ * @LastEditors: VSCode
  * @LastEditTime : 2020-01-08 14:32:15
  * @Description: 共用文件提取
  */
@@ -21,7 +21,7 @@ module.exports = {
 	name: 'dll',
 	entry: {
 		vue: [
-			'vue/dist/vue.esm.js',
+			require.resolve('vue/dist/vue.esm.js'),
 			'vue-router',
 			'vuex',
 			'vue-lazyload'
