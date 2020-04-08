@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2019-11-20 15:52:20
  * @LastEditors: VSCode
- * @LastEditTime : 2020-02-16 11:54:57
+ * @LastEditTime: 2020-03-16 09:20:20
  * @Description:
  */
 const chalk = require('chalk');
@@ -15,7 +15,15 @@ const MemoryFileSystem = require('memory-fs');
 const utils = require('./utils');
 const webpackDllConfig = require('../config/webpack.dll.config');
 
-const createDllConfig = (outputDir, chunks = [], fs) => {
+/**
+ * @name: ouputDLL
+ * @description: 输出dll结果
+ * @param {String} outputDir: 输出目录
+ * @param {Array} chunks: 输出目录
+ * @param {FileSystem} fs: 文件系统
+ * @return {Object}: 结果对象
+ */
+const outputDLL = (outputDir, chunks = [], fs) => {
 	const emitedConfig = chunks.reduce((res, chunk) => {
 		const { name, hash } = chunk;
 		const chunkDir = path.resolve(outputDir, name);
@@ -34,7 +42,7 @@ const createDllConfig = (outputDir, chunks = [], fs) => {
 	return emitedConfig;
 };
 
-const createDllPromise = function() {
+const createDLLPromise = function() {
 	return new Promise(function(resolve, reject) {
 		const currentIdentity = utils.getEntryModuleIdentity(webpackDllConfig.entry);
 		try {
@@ -64,7 +72,7 @@ const createDllPromise = function() {
 					spinner.stop();
 					spinner.succeed(`Stop compile dll asset service。 ${state.endTime - state.startTime}ms\n`);
 
-					const dllConfig = createDllConfig(compiler.outputPath, state.compilation.chunks, compiler.outputFileSystem);
+					const dllConfig = outputDLL(compiler.outputPath, state.compilation.chunks, compiler.outputFileSystem);
 					const dllList = Object.values(dllConfig);
 
 					fsExtra.writeJSONSync(path.resolve(webpackDllConfig.output.path, 'identity.json'), { hash: currentIdentityHash, dllList });
@@ -80,4 +88,4 @@ const createDllPromise = function() {
 		}
 	});
 };
-module.exports = createDllPromise;
+module.exports = createDLLPromise;

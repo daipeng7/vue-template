@@ -1,12 +1,31 @@
 /*
  * @Author:
  * @Date: 2019-11-07 11:48:58
- * @LastEditors  : VSCode
- * @LastEditTime : 2020-01-07 15:38:50
+ * @LastEditors: VSCode
+ * @LastEditTime: 2020-03-26 09:14:57
  * @Description: 构建配置
  */
 
 const path = require('path');
+const os = require('os');
+
+/**
+ * @description: 获取当前电脑ip地址
+ * @param {string} key
+ * @return: value 结果
+ */
+const getLocalIP = () => {
+	const interfaces = os.networkInterfaces();
+	for (const devName in interfaces) {
+		const iface = interfaces[devName];
+		for (let i = 0; i < iface.length; i++) {
+			const alias = iface[i];
+			if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+				return alias.address;
+			}
+		}
+	}
+};
 
 module.exports = {
 	default: {
@@ -48,7 +67,7 @@ module.exports = {
 				}
 			}
 		},
-		host: '0.0.0.0',
+		host: getLocalIP() || '0.0.0.0',
 		port: 8099, // 会覆盖process.env.PORT
 		autoOpenBrowser: true,
 		errorOverlay: true,

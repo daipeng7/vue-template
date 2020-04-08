@@ -2,12 +2,11 @@
  * @Author:
  * @Date: 2019-11-19 11:22:56
  * @LastEditors: VSCode
- * @LastEditTime: 2019-12-16 19:55:48
+ * @LastEditTime: 2020-03-26 10:19:35
  * @Description:
  */
 
 const path = require('path');
-const fs = require('fs');
 const config = require('./index');
 const packageConfig = require('../package.json');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');

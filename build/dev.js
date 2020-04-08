@@ -1,8 +1,8 @@
 /*
  * @Author:
  * @Date: 2019-11-19 15:55:35
- * @LastEditors  : VSCode
- * @LastEditTime : 2019-12-26 11:33:31
+ * @LastEditors: VSCode
+ * @LastEditTime: 2020-03-16 09:26:34
  * @Description: 开发环境启动脚本
  */
 const path = require('path');
@@ -13,7 +13,7 @@ const chokidar = require('chokidar');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const WebpackDevServer = require('webpack-dev-server');
 
-const createDllPromise = require('./dll');
+const createDLLPromise = require('./dll');
 const utils = require('./utils');
 const config = require('../config/index');
 
@@ -39,8 +39,13 @@ const devServerConfig = {
 		poll: config.dev.poll
 	}
 };
-
-const createSrcPromise = function(dllList) {
+/**
+ * @name: createDevPromise
+ * @description: 开发环境执行方法
+ * @param {Array} dllList: dll列表
+ * @return {Promise}
+ */
+const createDevPromise = function(dllList) {
 	return new Promise((resolve, reject) => {
 		portfinder.basePort = devServerConfig.port;
 		portfinder.getPortPromise().then(function(port, err) {
@@ -75,26 +80,13 @@ const createSrcPromise = function(dllList) {
 	});
 };
 
-let watcher = null;
-
-const createWatch = () => {
-	if (watcher) return;
-	const resolve = (dir) => path.resolve(__dirname, dir);
-	const configResolve = (dir) => path.resolve(__dirname, '../config', dir);
-	watcher = chokidar.watch([configResolve('./'), resolve('./')], {
-		ignored(p) {
-			const ignoredPaths = [resolve('./build.js'), configResolve('./webpack.prod.config.js')];
-			return ignoredPaths.includes(p);
-		}
-	});
-	watcher.on('change', () => {
-		developmentStart();
-	});
-};
-
+/**
+ * @name: developmentStart
+ * @description: 开发环境执行方法
+ */
 const developmentStart = () => {
-	createDllPromise().then(function({ dllList }) {
-		createSrcPromise(dllList);
+	createDLLPromise().then(function({ dllList }) {
+		createDevPromise(dllList);
 	});
 };
 
