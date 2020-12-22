@@ -78,7 +78,7 @@
     "lint-staged": "9.4.3",
     "memory-fs": "^0.5.0",
     "mini-css-extract-plugin": "0.8.0",
-    "node-notifier": "6.0.0",
+    "node-notifier": "8.0.1",
     "object-hash": "^2.0.2",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "portfinder": "1.0.25",
