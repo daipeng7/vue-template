@@ -23,7 +23,7 @@
     "et-theme": "./node_modules/.bin/et -c ./src/style/element-ui/element-variables.scss -o ./src/style/element-ui/theme"
   },
   "dependencies": {
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "date-fns": "2.8.1",
     "fastclick": "1.0.6",
     "lodash": "4.17.15",
